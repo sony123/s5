@@ -1,0 +1,3 @@
+The app uses your Google credential to fetch portfolio data from Google finance.
+Your credential is stored securely on device and only used to authenticate Google finance.
+Logging out erases the credential on device.

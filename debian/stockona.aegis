@@ -1,0 +1,15 @@
+<aegis>
+    <provide>
+       <credential name="ej3qul4">
+           <docstring>
+              A Token that is used for encrypting data.
+           </docstring>
+       </credential>
+    </provide>
+   <request>
+      <credential name="Location" />
+      <credential name="stockona::ej3qul4" />
+      <for path="/opt/stockona/bin/stockona" />
+      <for path="applauncherd-launcher::/usr/bin/applauncherd.bin" id="" />
+   </request>
+</aegis>

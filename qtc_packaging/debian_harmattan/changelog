@@ -1,0 +1,220 @@
+stockona (0.6.6) unstable; urgency=low
+  * Fix fractional precision issues.
+  * Add gain percentage to pfoBanner.
+  * Partially fix local portfolio performance data unavailable in pfoBanner at app start up when google login is enabled.
+    Now the performance data are shown after update timer is triggered or after user manually update the quotes.
+
+ -- stockona <stockona@ovi.com>  Mon, 14 Jan 2013 22:16:19 -0800
+
+stockona (0.6.5) unstable; urgency=low
+  * Add fullname sections to position list view.
+
+ -- unknown <>  Tue, 01 Jan 2013 23:58:11 -0800
+
+stockona (0.6.4) unstable; urgency=low
+  * Improve memory usage.
+  * Refactor source code to consolidate QML list models.
+
+ -- unknown <>  Sat, 29 Dec 2012 22:09:50 -0800
+
+stockona (0.6.3) unstable; urgency=low
+* Fix local portfolio performance info not available in pull-down banner after startup when bypass Google login is turned on.
+* Fix unavailable position view search button when returning from about dialog.
+* Configurable left button on position view toolbar: search button or view-toggle button.
+* Add DAX symbol to Market Overview.
+
+ -- unknown <>  Wed, 28 Nov 2012 07:56:12 -0800
+
+stockona (0.6.1) unstable; urgency=low
+  * Fix last portfolio selection recovery issue when bypass google login is enabled.
+  * Improve auto-reloading of portfolio when adding a symbol through symbol finder sheet in home view.
+  * symbian: Fix various UI glitches.
+
+ -- unknown <>  Tue, 13 Nov 2012 23:54:23 -0800
+
+stockona (0.6.0) unstable; urgency=low
+  * Replace view-switch button with search button in home view.
+  * Add zh_TW localization.
+  * Improve news parsing.
+  * Pull-down banner contains porftolio name.
+  * Small UI tweaks.
+
+ -- unknown <>  Wed, 24 Oct 2012 20:36:08 -0700
+
+stockona (0.5.7) unstable; urgency=low
+  * Fix cost calculation error in symbol list view.
+  * Added search button in position finder sheet for UI consistency.
+  * Add startup dialog to notify users of impending Google Finance API shutdown.
+
+ -- unknown <>  Mon, 08 Oct 2012 22:40:48 -0700
+
+stockona (0.5.6) unstable; urgency=low
+  * Pull-from-the-top portfolio performance banner available in free version.
+  * Configurable default Market Overview state.
+  * Support fractional share number.
+  * Fix local portfolio cost calculation error in symbol list view.
+  * Setting variables refactor.
+
+ -- unknown <>  Mon, 17 Sep 2012 00:07:28 -0700
+
+stockona (0.5.5) unstable; urgency=low
+  * Configurable symbol market overview for paid version.
+  * Symbian: Add splash screen.
+
+ -- unknown <>  Sat, 25 Aug 2012 13:57:18 -0700
+
+stockona (0.5.4) unstable; urgency=low
+  * Fix dark theme option unreachable in setting page for + version.
+
+ -- unknown <>  Tue, 21 Aug 2012 22:13:17 -0700
+
+stockona (0.5.3) unstable; urgency=low
+  * Fix Google finance searching due to format change on Google.
+  * Fix database connection warning.
+
+ -- unknown <>  Sat, 11 Aug 2012 00:09:21 -0700
+
+stockona (0.5.2) unstable; urgency=low
+  * Add portfolio import from Google csv file.
+  * Fix precision issue for transaction numbers.
+  * Fix 'Related News' rectangle drawing in lanscape view.
+  * Symbian: Fix cannot enter decimal point in digits only input field.
+  * Symbian: Update toggle view icon.
+
+ -- unknown <>  Mon, 16 Jul 2012 00:07:57 -0700
+
+stockona (0.5.1) unstable; urgency=low
+  * Add pull-down portfolio performance banner.
+  * Fix a bug in transaction deletion.
+  * Tweak to hopefully reduce memory footprint.
+
+ -- unknown <>  Sat, 30 Jun 2012 22:23:33 -0700
+
+stockona (0.5.0) unstable; urgency=low
+  * Add transaction support for local portfolio.
+
+ -- unknown <>  Wed, 06 Jun 2012 23:35:17 -0700
+
+stockona (0.4.2) unstable; urgency=low
+  * Fix nan in performance calculation.
+  * Use SQL to store local portfolio info.
+  * Fix a bug in edit sheet.
+  * Fix UI for delete dialog and edit guide dialog in portfolio view.
+
+ -- unknown <>  Sat, 12 May 2012 00:29:40 -0700
+
+stockona (0.4.0) unstable; urgency=low
+  * Ability to sync local portfolio to Google Finance.
+  * Ability to sync Google portfolio to local.
+  * Ability to add symbols to Google Portfolio.
+
+ -- unknown <>  Mon, 16 Apr 2012 23:50:20 -0700
+
+stockona (0.3.10) unstable; urgency=low
+  * More robust related view parsing.
+  * Limit Google performance to two decimal numbers.
+  * Ad related changes.
+  * Cleanup project file.
+
+ -- unknown <>  Tue, 27 Mar 2012 02:03:04 -0700
+
+stockona (0.3.9) unstable; urgency=low
+  * Add ad to regular version.
+  * Add posFinder view.
+  * Call posFinder in rtView.
+
+ -- unknown <>  Sat, 10 Mar 2012 00:55:47 -0800
+
+stockona (0.3.8) unstable; urgency=low
+  * Fix missing toolbar due to half-way developement feature.
+  * Add a 'No Symbol' overlay when there is no symbols in position model.
+
+ -- unknown <>  Tue, 28 Feb 2012 21:00:41 -0800
+
+stockona (0.3.7) unstable; urgency=low
+  * Add a 'search' feature for more streamlined position creation.
+
+ -- unknown <>  Sun, 26 Feb 2012 01:27:03 -0800
+
+stockona (0.3.6) unstable; urgency=low
+  * Fix state transition for delete dialog in pfo view, hide ugly text content changes when editGuide is off.
+  * Fix false warning message when a user has never created any local portfolio, i.e. no portfolio.cfg.
+  * Revert aboutDialog to dialog style
+
+ -- unknown <>  Fri, 24 Feb 2012 08:48:14 -0800
+
+stockona (0.3.5) unstable; urgency=low
+  * Bump version number to reflect degree of changes.
+  * Fix pfoView auto-invoke when doing local-mode switching.
+  * Fix posModel role change bug in local-only mode.
+  * Fix errorDialog ok button issue.
+  * Fix loadPfo() error handling when portfolio file exists but doesn't contain valid data.
+  * Fix local position change, number of positions update on portfolio viw.
+
+ -- unknown <>  Thu, 09 Feb 2012 00:56:42 -0800
+
+stockona (0.3.2) unstable; urgency=low
+  * Fix a login issue.
+  * Fix local portfolio refresh issue.
+  * Fix local portfolio deletion didn't remove un-used files.
+  * Improve empty position detection in local-only mode.
+  * Layout tweak for PR1.2 new font.
+  * Add trailing-twelve-month dividend/yield.
+  * Add aftermarket quote info for Google quotes.
+  * Update splash screen.
+
+ -- unknown <>  Thu, 02 Feb 2012 02:25:35 -0800
+
+stockona (0.3.1) unstable; urgency=low
+  * Security fix to encrypt Google password information.
+  * Add vkb attributes to guide user interaction.
+  * Small UI changes to RT & portfolio view.
+
+ -- unknown <>  Thu, 05 Jan 2012 02:09:09 -0800
+
+stockona (0.3.0) unstable; urgency=low
+  * Change search dialog UI.
+  * Fix to display after-hour price info whereever applicable.
+  * Features implemented but not exposed: Transaction creation & upload-to-google. Issues with Google API.
+  * Improve help page.
+
+ -- unknown <>  Sun, 18 Dec 2011 01:09:09 -0800
+
+stockona (0.2.9) unstable; urgency=low
+  * Work-around search dialog issue.
+
+ -- unknown <>  Sat, 17 Dec 2011 03:44:33 -0800
+
+stockona (0.2.8) unstable; urgency=low
+  * Add search suggestion to local portfolio creation.
+  * Save market overview news default.
+
+ -- unknown <>  Thu, 15 Dec 2011 00:16:04 -0800
+
+stockona (0.2.7) unstable; urgency=low
+  * UI tweaks: pageIndicator etc.
+
+ -- unknown <>  Tue, 13 Dec 2011 17:57:54 -0800
+
+stockona (0.2.6) unstable; urgency=low
+  * Add market overview initial version.
+
+ -- unknown <>  Sun, 11 Dec 2011 11:28:45 -0800
+
+stockona (0.2.5) unstable; urgency=low
+  * Add related symbols.
+  * Cleanup error handling.
+
+ -- unknown <>  Thu, 24 Nov 2011 11:22:36 -0800
+
+stockona (0.2.4) unstable; urgency=low
+  * Prepare for future features.
+
+ -- unknown <>  Sun, 20 Nov 2011 23:39:21 -0800
+
+stockona (0.2.3) unstable; urgency=low
+  * Add transactions view for Google portfolio.
+  * Fix a background color issue in light params.
+  * Clean up UI irregularities.
+
+ -- unknown <>  Wed, 16 Nov 2011 01:21:49 -0800

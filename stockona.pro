@@ -46,7 +46,8 @@ HEADERS += \
     src/loadhelper.h \
 #    src/pfoItem.h \
 #    src/listModel.h \
-    src/params.h
+    src/params.h \
+    src/key.h
 
 SOURCES += src/main.cpp \
     src/filehandler.cpp \

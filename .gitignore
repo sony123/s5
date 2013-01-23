@@ -161,3 +161,14 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+# local ignore
+*.sis
+*.rss
+*.loc
+*.pkg
+*.mmp
+*.deb
+*.changes
+bld.inf
+moc

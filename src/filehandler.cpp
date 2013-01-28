@@ -14,20 +14,24 @@ FileHandler::FileHandler(QObject *parent) :
 
     aegis_token = enc_key;
 
-#ifdef Q_OS_SYMBIAN
+#if defined(Q_OS_SYMBIAN)
     // Use default folder
     cfgDir = ".stockona/";
+#elif defined(Q_OS_BLACKBERRY)
+    cfgDir = "data/";
 #else
     cfgDir = "/home/user/.stockona/";
 #endif
 
     // stockona db folder
+#ifndef Q_OS_BLACKBERRY
     QDir dir(cfgDir);
     if (!dir.exists())
         QDir().mkdir(cfgDir);
+#endif
 
     // Symbian
-#ifdef Q_OS_SYMBIAN
+#if defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     QString _a(aegis_token);
     QByteArray t = _a.toLocal8Bit();
     unsigned char key[32];
@@ -103,7 +107,7 @@ FileHandler::FileHandler(QObject *parent) :
 QVariant FileHandler::encryptData(const QString & clearTextArg) {
 #if defined(Q_WS_SIMULATOR)
     return QVariant(clearTextArg);
-#elif defined(Q_OS_SYMBIAN)
+#elif defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     unsigned char ivE[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 
     QByteArray t = clearTextArg.toUtf8();
@@ -160,7 +164,7 @@ QVariant FileHandler::encryptData(const QString & clearTextArg) {
 QString FileHandler::decryptData(const QVariant cipherTextRaw) {
 #if defined(Q_WS_SIMULATOR)
     return cipherTextRaw.toString();
-#elif defined(Q_OS_SYMBIAN)
+#elif defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     QByteArray a = cipherTextRaw.toByteArray();
 
     unsigned char ivD[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
@@ -1286,6 +1290,8 @@ Q_INVOKABLE void FileHandler::listCSV() {
 
 #ifdef Q_OS_SYMBIAN
     QString csvDir = "e:/";
+#elif defined(Q_OS_BLACKBERRY)
+    QString csvDir = "file://shared/documents";
 #else
     QString csvDir = "/home/user/MyDocs/";
 #endif
@@ -1305,6 +1311,9 @@ Q_INVOKABLE void FileHandler::listCSV() {
 Q_INVOKABLE int FileHandler::loadCSV(QString name)
 {
 #ifdef Q_OS_SYMBIAN
+    QString csvDir = "e:/";
+#elif defined(Q_OS_BLACKBERRY)
+    // TODO
     QString csvDir = "e:/";
 #else
     QString csvDir = "/home/user/MyDocs/";
@@ -1431,6 +1440,13 @@ Q_INVOKABLE QString FileHandler::toCSV(const int idx, QString name)
     posName.append(QString::number(idx));
 
     QString outF = cfgDir;
+#ifdef Q_OS_BLACKBERRY
+    outF.append("file://shared/documents/");
+#elif Q_WS_HARMATTAN
+    outF.append("/home/user/MyDocs/")
+#else
+    outF.append("E:/");
+#endif
     outF.append("stockona_");
     outF.append(name);
     outF.append(".csv");

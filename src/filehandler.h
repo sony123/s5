@@ -21,7 +21,7 @@
 #include <QSqlError>
 #include <QtCore/qmath.h>
 
-#if defined(Q_OS_SYMBIAN)
+#if defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
   #include <openssl/evp.h>
   #include <openssl/aes.h>
 #elif defined(Q_WS_HARMATTAN)
@@ -242,7 +242,7 @@ private:
     quint64 pfoCost;
     quint64 pfoValue;
 
-#ifdef Q_OS_SYMBIAN
+#if defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     AES_KEY aeskeyD;
     AES_KEY aeskeyE;
 #endif

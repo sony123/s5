@@ -322,8 +322,8 @@ Page {
                     pfoSelectedIdx = index;
                     appWindow.pfoName   = pfoModel.get(index).name;
 
-                    // Save pfoModel index to C in order to update portfolio performance.
-                    fileHandler.activePos = index;
+                    // Save pfoModel index to C in order to update portfolio performance in script.js.
+                    fileHandler.localPos = index;
 
                     console.log("idx=" + index + " gPfoLength=" + gPfoLength + " activePos=" +activePos + " local=" + local + " yh=" + isYahoo);
 
@@ -421,7 +421,7 @@ Page {
                         appWindow.pfoName   = pfoModel.get(index).name;
 
                         // Save pfoModel index to C in order to update portfolio performance.
-                        fileHandler.activePos = index;
+                        fileHandler.localPos = index;
 
                         container.state = "pfoDelete";
                         deleteDialog.open();

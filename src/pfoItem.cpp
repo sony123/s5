@@ -6,10 +6,10 @@ PfoItem::PfoItem(const QString &local,
                      const QString &feedLink,
                      const QString &excerpt,
                      const bool &isYahoo,
-                     const float &num,
-                     const float &cost,
-                     const float &gain,
-                     const float &value,
+                     const int &num,
+                     const QString &cost,
+                     const QString &gain,
+                     const QString &value,
                      QObject* parent) :
     ListItem(parent), m_local(local), m_name(name), m_link(feedLink), m_excerpt(excerpt), m_isYahoo(isYahoo), m_num(num), m_cost(cost), m_gain(gain), m_value(value)
 {}

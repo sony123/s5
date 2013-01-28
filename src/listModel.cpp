@@ -12,12 +12,6 @@ int ListModel::rowCount(const QModelIndex &parent) const
     return m_list.size();
 }
 
-int ListModel::rowCount(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return m_list.size();
-}
-
 QVariant ListModel::data(const QModelIndex &index, int role) const
 {
     if(index.row() < 0 || index.row() >= m_list.size())
@@ -53,36 +47,6 @@ void ListModel::insertRow(int row, ListItem *item)
     endInsertRows();
 }
 
-Q_INVOKABLE void ListModel::append(QVariantMap mapItem)
-{
-    ListItem *item = new(mapItem);
-    appendRows(QList<ListItem*>() << item);
-}
-
-Q_INVOKABLE bool ListModel::remove(int row)
-{
-    //  if(row < 0 || row >= m_list.size()) return false;
-    if(row < 0 || row > m_list.size()) return false;
-    beginRemoveRows(QModelIndex(), row, row);
-    // Notify view
-//    emit dataChanged(QModelIndex::child(row, 0), QModelIndex::child(row, 0));
-    delete m_list.takeAt(row);
-    endRemoveRows();
-    return true;
-}
-
-Q_INVOKABLE QVariantMap ListModel::get(int index) {
-    if(index < 0 || index >= m_list.size())
-        return QVariant();
-    return m_list.at(index.row());
-}
-
-Q_INVOKABLE int ListModel::count(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return m_list.size();
-}
-
 // Relay dataChange() signal from ListItem to view
 void ListModel::handleItemChange()
 {
@@ -98,7 +62,7 @@ void ListModel::handleItemChange()
 ListItem * ListModel::find(const QString &id) const
 {
     foreach(ListItem* item, m_list) {
-        if(item->date() == id) return item;
+        if(item->name() == id) return item;
     }
     return 0;
 }
@@ -154,3 +118,23 @@ ListItem * ListModel::takeRow(int row)
     endRemoveRows();
     return item;
 }
+
+/*
+bool ListModel::setItemData (const QModelIndex & index, const QMap<int, QVariant> & roles) {
+    if (index.isValid()) {
+        // TODO: Copy QMap values to ListItem
+        QMapIterator<int, QVariant> i(roles);
+        while (i.hasNext()) {
+            i.next();
+            //cout << i.key() << ": " << i.value() << endl;
+        }
+
+//        ListItem* item = new
+//        m_list.replace(index.row(), item);
+        emit dataChanged(index, index);
+        return true;
+    }
+    else
+        return false;
+}
+*/

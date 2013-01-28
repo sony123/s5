@@ -10,9 +10,21 @@
 #include "qmlapplicationviewer.h"
 #include "fileHandler.h"
 
-#if defined(Q_WS_SIMULATOR) || defined(Q_OS_SYMBIAN)
+#ifdef DEV
+#include "pfoItem.h"
+#endif
+
+#if defined(Q_WS_SIMULATOR) || defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
   #include <QtCore/QTimer>
   #include "loadhelper.h"
+#endif
+
+#if defined(Q_OS_BLACKBERRY)
+//#define GL
+#ifdef GL
+#include <QGLWidget>
+#include <QGLFormat>
+#endif
 #endif
 
 #ifdef AD_ENABLE
@@ -21,17 +33,31 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
+#if defined(Q_OS_BLACKBERRY)
+    QApplication::setStartDragDistance(16);
+#endif
     QScopedPointer<QApplication> app(createApplication(argc, argv));
     QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
 
     // Performance
+#if defined(Q_OS_BLACKBERRY)
+#ifdef GL
+    QGLFormat format = QGLFormat::defaultFormat();
+    format.setSampleBuffers(false);
+    QGLWidget *glWidget = new QGLWidget(format);
+    glWidget->setAutoFillBackground(false);
+
+    viewer->setViewport(glWidget);
+#endif
+#endif
+
     viewer->setAttribute(Qt::WA_OpaquePaintEvent);
     viewer->viewport()->setAttribute(Qt::WA_OpaquePaintEvent);
     viewer->setAttribute(Qt::WA_NoSystemBackground);
     viewer->viewport()->setAttribute(Qt::WA_NoSystemBackground);
     viewer->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
 
-#if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR)
+#if defined(Q_OS_SYMBIAN) || defined(Q_WS_SIMULATOR) || defined (Q_OS_BLACKBERRY)
     // First set a QML file that's quick to load and show it as a splash screen.
     //    viewer.setMainQmlFile(QLatin1String("qml/RestaurantAppComponents/SplashScreen.qml"));
     //    // Then trigger loading the *real* main.qml file, which can take longer to load.
@@ -68,16 +94,21 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     FileHandler *fileHandler = new FileHandler();
     viewer->rootContext()->setContextProperty("fileHandler", fileHandler);
 
-#ifdef Q_WS_HARMATTAN
-    viewer->setMainQmlFile(QLatin1String("/opt/stockona/qml/stockona/mainAd.qml"));
+    // Hook up C++ model
+#ifdef DEV
+    ListModel* pfoModel = new ListModel(new PfoItem);
+    pfoModel->appendRow(new PfoItem("A","B","C","D",false,0, "0.0","0.0","10.0") );
+    pfoModel->appendRow(new PfoItem("K","K","K","K",false,0, "0.0","0.0","10.0") );
+    viewer->rootContext()->setContextProperty("pfoModelC", pfoModel);
+#endif
 
-    // Register QML elements
-//    QObject* pfoModel = viewer->rootObject()->findChild<QObject*>("pfoModel");
+#if defined(Q_WS_HARMATTAN)
+    viewer->setMainQmlFile(QLatin1String("/opt/stockona/qml/stockona/mainAd.qml"));
 #else
     viewer->setMainQmlFile(QLatin1String("qml/stockona/Splash.qml"));
 #endif
 
-#if defined(Q_WS_SIMULATOR) || defined(Q_OS_SYMBIAN)
+#if defined(Q_WS_SIMULATOR) || defined(Q_OS_SYMBIAN) || defined(Q_OS_BLACKBERRY)
     viewer->showExpanded();
 #else
     viewer->showFullScreen();

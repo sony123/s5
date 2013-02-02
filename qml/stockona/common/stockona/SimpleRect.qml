@@ -7,7 +7,7 @@ Rectangle {
 
     property bool useDarkTheme: true
     color: (useDarkTheme) ? "#5F5A59" : "#E4F5FF"
-    radius: 15
+    radius: 12
 
     property int textSize: 12
     property alias text: label.text

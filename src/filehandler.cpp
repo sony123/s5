@@ -1439,17 +1439,19 @@ Q_INVOKABLE QString FileHandler::toCSV(const int idx, QString name)
     QString posName = "pos_";
     posName.append(QString::number(idx));
 
-    QString outF = cfgDir;
+    QString outF;
 #ifdef Q_OS_BLACKBERRY
-    outF.append("file://shared/documents/");
+    QString workingDir = QDir::currentPath();
+    outF.append("/" + workingDir + "/shared/documents/");
 #elif Q_WS_HARMATTAN
-    outF.append("/home/user/MyDocs/")
+    outF.append("/home/user/MyDocs/");
 #else
     outF.append("E:/");
 #endif
     outF.append("stockona_");
     outF.append(name);
     outF.append(".csv");
+    qDebug() << outF;
 
     QFile of( outF );
 

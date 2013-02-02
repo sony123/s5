@@ -86,7 +86,7 @@ Item {
       \warning This functionality is not yet implemented
       */
     property bool useLocation: false
-
+    property bool fullscreen: false
 
     /*!
       \internal

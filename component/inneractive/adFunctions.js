@@ -55,6 +55,11 @@ function createQuery(adItem)
         addQuery("g", parameters.userGender);
         addQuery("k", parameters.keywords);
         addQuery("mn", parameters.mobileNumber);
+        addQuery("ow", parameters.__screenWidth);
+        addQuery("oh", parameters.__screenHeight);
+        if (parameters.fullscreen==true) {
+           addQuery("fs", parameters.fullscreen);
+        }
 
         if (parameters.useLocation) {
             addQuery("l", parameters.__location);

@@ -1989,7 +1989,8 @@ function parseJSONAll(data, pfoLocal) {
         }
     }
 
-    waiting.state = "hidden";
+//    waiting.state = "hidden";
+    waiting.state = "posDone";
 }
 
 function parseJSONAllModel(data, mdl) {

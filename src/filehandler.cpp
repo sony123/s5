@@ -1291,7 +1291,8 @@ Q_INVOKABLE void FileHandler::listCSV() {
 #ifdef Q_OS_SYMBIAN
     QString csvDir = "e:/";
 #elif defined(Q_OS_BLACKBERRY)
-    QString csvDir = "file://shared/documents";
+    QString workingDir = QDir::currentPath();
+    QString csvDir = "/" + workingDir + "/shared/documents/";
 #else
     QString csvDir = "/home/user/MyDocs/";
 #endif
@@ -1313,8 +1314,8 @@ Q_INVOKABLE int FileHandler::loadCSV(QString name)
 #ifdef Q_OS_SYMBIAN
     QString csvDir = "e:/";
 #elif defined(Q_OS_BLACKBERRY)
-    // TODO
-    QString csvDir = "e:/";
+    QString workingDir = QDir::currentPath();
+    QString csvDir = "/" + workingDir + "/shared/documents/";
 #else
     QString csvDir = "/home/user/MyDocs/";
 #endif
@@ -1451,7 +1452,6 @@ Q_INVOKABLE QString FileHandler::toCSV(const int idx, QString name)
     outF.append("stockona_");
     outF.append(name);
     outF.append(".csv");
-    qDebug() << outF;
 
     QFile of( outF );
 
